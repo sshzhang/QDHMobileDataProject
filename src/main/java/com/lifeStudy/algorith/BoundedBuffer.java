@@ -34,16 +34,12 @@ public class BoundedBuffer<V> extends BaseBoundedBuffer<V> {//条件队列
     }
 
     public static void main(String... args) throws InterruptedException {
-
         BoundedBuffer<Integer> integerBoundedBuffer = new BoundedBuffer<Integer>(12);
 //        new Thread(new Consummer(integerBoundedBuffer)).start();
 //        TimeUnit.SECONDS.sleep(10);
         new Thread(new Producer(integerBoundedBuffer)).start();
         //通过下面可以看到  调用wait挂起线程时会释放锁.
 //        new Thread(new Producer(integerBoundedBuffer)).start();
-
-
-
     }
 
     private static class Consummer implements Runnable {

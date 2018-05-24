@@ -64,6 +64,29 @@ public class DbHelper {
         return map;
     }
 
+
+    public boolean hasTheData(String sql, List<Object> params) {//是否存在数据
+        boolean flages = false;
+        if (connection != null) {
+            try {
+                PreparedStatement statement = connection.prepareStatement(sql);
+                int i = 1;
+                if (params != null && params.size() > 0)
+                    for (Object param : params) {
+                        statement.setObject(i++, param);
+                    }
+                ResultSet resultSet = statement.executeQuery();
+                flages = resultSet.next() ? true : false;
+                resultSet.close();
+            } catch (Exception e) {
+
+            } finally {
+                freeConnection();
+            }
+        }
+        return flages;
+    }
+
     public List<Map<Object, Object>> findMoreLines(String sql, List<Object> params) {
         List<Map<Object, Object>> lists = null;
         if (connection != null) {
@@ -129,6 +152,18 @@ public class DbHelper {
         return flage;
     }
 
+
+    public static void main(String... args) {
+//        DbHelper dbHelper = new DbHelper();
+//        List<Object> params = new ArrayList<Object>();
+//        params.add(10060);
+//        params.add(1001);
+//        boolean bst = dbHelper.exeUpdateOneLine("delete from qdh_ykrs where spotId=? and kpiId=?", params);
+//        System.out.println(bst);
+
+
+
+    }
 
     //存储过程调用  有输入输出值的存储过程
     public Object exeSimpleDataProcedure(String sql, List<Object> params) {
@@ -288,12 +323,12 @@ public class DbHelper {
         return true;
     }
 
-    public static void main(String... args) {
-        DbHelper dbHelper = new DbHelper();
-        String SQL = "{CALL Category_ContentInfosUpdate(5,2)}";
-        List<Map<Object, Object>> listmaps = dbHelper.exeComplicateQueryDataProcedure(SQL, null);
-        System.out.println(listmaps.size());
-    }
+//    public static void main(String... args) {
+//        DbHelper dbHelper = new DbHelper();
+//        String SQL = "{CALL Category_ContentInfosUpdate(5,2)}";
+//        List<Map<Object, Object>> listmaps = dbHelper.exeComplicateQueryDataProcedure(SQL, null);
+//        System.out.println(listmaps.size());
+//    }
 
 
 }

@@ -9,8 +9,8 @@
         <module name="QDHMobileDataProject" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="QDHMobileDataProject" target="1.5" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="QDHMobileDataProject" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

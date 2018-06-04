@@ -17,14 +17,6 @@ public class IOText {
     public static void main(String... args) throws IOException {
 
 
-        ReentrantLock reentrantLock = new ReentrantLock();
-        Condition condition =
-                reentrantLock.newCondition();
-        reentrantLock.lock();
-        reentrantLock.unlock();
-
-//        condition.await();
-
     }
 
     public void selector() throws IOException {

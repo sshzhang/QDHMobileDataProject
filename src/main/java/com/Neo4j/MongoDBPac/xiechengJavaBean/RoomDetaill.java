@@ -20,7 +20,6 @@ public class RoomDetaill {
     public String bedthroom;
     @FiledNameReplace(name = "*无烟*", MethodName = "setHomeArrangeNoSmorkingPlace")
     public String homeArrangeNoSmorkingPlace;
-
     public RoomDetaill() {
     }
     public RoomDetaill(String convenient_facility, String increasebed, String decreasebed,String bedType, String buildingArea, String homeType, String floor, String bedthroom, String homeArrangeNoSmorkingPlace) {

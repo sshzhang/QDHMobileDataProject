@@ -56,6 +56,12 @@ public class XieChengHotel {
     @FiledMethodAnnotation(MethodName = "setShop_url",ParameterType =String.class)
     public String shop_url;//酒店url
 
+    public static String rate_desc[];
+    static {
+        rate_desc=new String[]{"一星级以下", "一星级", "二星级", "三星级", "四星级", "五星级", "六星级"};
+    }
+
+
     public  XieChengHotel() {
     }
     public XieChengHotel(String _id, String crawl_time, String data_region, String data_source, String data_website, String shop_active_status, String shop_address, String shop_around_facilities, String shop_category_name, int shop_comment_num, float shop_grade, String shop_grade_text, int shop_id, String shop_img, String shop_intro, String shop_name, String shop_phone, float shop_price, String shop_rate, String shop_room_favourable, String shop_room_recommend_all, String shop_satisfaction_percent, String shop_statistics, String shop_url) {
@@ -230,6 +236,20 @@ public class XieChengHotel {
     }
 
     public String getShop_rate() {
+        try{
+            if (shop_rate != null &&(!"".equals(shop_rate))) {
+                String substring = shop_rate.substring(shop_rate.length() - 1, shop_rate.length());
+                int rate = Integer.parseInt(substring);
+
+                return rate_desc[rate];
+            }else{
+                return "";
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println(shop_rate);
+
+        }
         return shop_rate;
     }
 
@@ -282,16 +302,11 @@ public class XieChengHotel {
 
         String str = "\"床型\": \"多床\", \"宽带\": \"免费\", \"房价\": \"¥7556\", \"政策\": \"不可取消立即确认\", \"入住人数\": \"每间最多入住4人\", \"早餐\": \"每天四早\", \"满意度\": \"(\\\"约会春天\\\"情侣套餐) 礼预订满意度 97%\"";
         Pattern compile = Pattern.compile("(\"(nihao)\")+?:\\s(\"(.*?)\")+?");
-
         Matcher matcher =
                 compile.matcher(str);
         matcher.find();
-
-//        while (matcher.find()) {
-
             System.out.println(matcher.group(2));
             System.out.println(matcher.group(4));
-//        }
         Pattern compile1 = Pattern.compile("(?<=\"满意度\":)\\s\"(.*?)\"");
         Matcher matcher1 = compile1.matcher(str);
         matcher1.find();

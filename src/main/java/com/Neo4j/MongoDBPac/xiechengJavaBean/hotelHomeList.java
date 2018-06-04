@@ -5,7 +5,6 @@ import java.util.List;
 public class hotelHomeList {//酒店所有的房型列表
 
     public RoomDetaill room_detail;
-
     public List<RoomInfoList> room_info_list;
 
     public hotelHomeList() {
